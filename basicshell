@@ -1,0 +1,260 @@
+Here are common **shell script commands** used for scripting in a Unix/Linux environment:
+
+### 1. **Basic Shell Commands**
+- `echo`: Prints text or variables to the terminal.
+  ```bash
+  echo "Hello, World!"
+  ```
+  
+- `read`: Reads input from the user.
+  ```bash
+  read -p "Enter your name: " name
+  echo "Your name is $name"
+  ```
+
+- `if [ condition ]`: Conditional statement for testing.
+  ```bash
+  if [ "$num" -gt 10 ]; then
+    echo "Number is greater than 10"
+  fi
+  ```
+
+- `test`: Alternative to `[ ]`, for testing conditions.
+  ```bash
+  test "$num" -gt 10 && echo "Number is greater than 10"
+  ```
+
+- `sleep`: Pauses execution for a specified time.
+  ```bash
+  sleep 5  # Pause for 5 seconds
+  ```
+
+- `exit`: Terminates a script with an exit code.
+  ```bash
+  exit 0  # Exit successfully
+  ```
+
+### 2. **Loops**
+- `for`: Executes a loop over a list of items.
+  ```bash
+  for file in *.txt; do
+    echo "Processing $file"
+  done
+  ```
+
+- `while`: Repeats a set of commands as long as a condition is true.
+  ```bash
+  count=1
+  while [ $count -le 5 ]; do
+    echo "Count is $count"
+    count=$((count + 1))
+  done
+  ```
+
+- `until`: Repeats a set of commands until a condition becomes true.
+  ```bash
+  count=1
+  until [ $count -gt 5 ]; do
+    echo "Count is $count"
+    count=$((count + 1))
+  done
+  ```
+
+### 3. **File and Directory Management**
+- `touch`: Creates an empty file.
+  ```bash
+  touch file.txt
+  ```
+
+- `mkdir`: Creates a new directory.
+  ```bash
+  mkdir new_folder
+  ```
+
+- `cp`: Copies files.
+  ```bash
+  cp source.txt destination.txt
+  ```
+
+- `mv`: Moves or renames files and directories.
+  ```bash
+  mv old_file.txt new_file.txt
+  ```
+
+- `rm`: Deletes files.
+  ```bash
+  rm file.txt
+  ```
+
+- `rmdir`: Deletes an empty directory.
+  ```bash
+  rmdir directory
+  ```
+
+### 4. **Conditions and Tests**
+- Numeric comparison:
+  - `-eq`: Equal
+  - `-ne`: Not equal
+  - `-lt`: Less than
+  - `-le`: Less than or equal
+  - `-gt`: Greater than
+  - `-ge`: Greater than or equal
+  ```bash
+  if [ "$num" -gt 10 ]; then
+    echo "Number is greater than 10"
+  fi
+  ```
+
+- String comparison:
+  - `=`: Equal
+  - `!=`: Not equal
+  - `-z`: Empty string
+  ```bash
+  if [ "$str1" = "$str2" ]; then
+    echo "Strings are equal"
+  fi
+  ```
+
+- File tests:
+  - `-e`: File exists
+  - `-f`: File exists and is a regular file
+  - `-d`: Directory exists
+  - `-r`: File is readable
+  - `-w`: File is writable
+  - `-x`: File is executable
+  ```bash
+  if [ -f "$file" ]; then
+    echo "$file is a regular file"
+  fi
+  ```
+
+### 5. **Command Substitution**
+- Assign output of a command to a variable using `$()`.
+  ```bash
+  current_date=$(date)
+  echo "Today is $current_date"
+  ```
+
+### 6. **Functions**
+- Defines a function for reusable code.
+  ```bash
+  greet() {
+    echo "Hello, $1!"
+  }
+  greet "Alice"  # Call the function
+  ```
+
+### 7. **Input and Output Redirection**
+- `>`: Redirects output to a file (overwrites).
+  ```bash
+  echo "This is a test" > file.txt
+  ```
+
+- `>>`: Appends output to a file.
+  ```bash
+  echo "Append this line" >> file.txt
+  ```
+
+- `<`: Redirects input from a file.
+  ```bash
+  while read line; do
+    echo $line
+  done < file.txt
+  ```
+
+- `|`: Pipes the output of one command as input to another.
+  ```bash
+  ls | grep "file"
+  ```
+
+### 8. **Arithmetic Operations**
+- Perform arithmetic using `$(( ))` for integers.
+  ```bash
+  sum=$((5 + 3))
+  echo "Sum is: $sum"
+  ```
+
+- For floating-point arithmetic, use `bc` (Basic Calculator).
+  ```bash
+  result=$(echo "3.5 + 2.1" | bc)
+  echo "Result: $result"
+  ```
+
+### 9. **Case Statements**
+- Simplifies branching logic.
+  ```bash
+  read -p "Enter a number (1-3): " num
+  case $num in
+    1) echo "You entered 1" ;;
+    2) echo "You entered 2" ;;
+    3) echo "You entered 3" ;;
+    *) echo "Invalid number" ;;
+  esac
+  ```
+
+### 10. **Environment Variables**
+- Display or modify environment variables.
+  ```bash
+  echo "HOME directory: $HOME"
+  export PATH=$PATH:/new/directory  # Add to PATH
+  ```
+
+### 11. **Error Handling**
+- Use `||` and `&&` for conditional execution.
+  ```bash
+  mkdir new_dir || echo "Failed to create directory"
+  ```
+
+- Exit script on error using `set -e`.
+  ```bash
+  set -e  # Stop script on any error
+  ```
+
+### 12. **Checking User Privileges**
+- Check if the current user is root.
+  ```bash
+  if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root"
+    exit
+  fi
+  ```
+
+### 13. **Scripting with Arguments**
+- Access command-line arguments using `$1`, `$2`, etc.
+  ```bash
+  echo "First argument: $1"
+  echo "Second argument: $2"
+  ```
+
+- Use `$#` to count the number of arguments.
+  ```bash
+  echo "Total arguments: $#"
+  ```
+
+- Use `$@` to reference all arguments.
+  ```bash
+  for arg in "$@"; do
+    echo "$arg"
+  done
+  ```
+
+### 14. **Miscellaneous Commands**
+- `basename`: Extracts the filename from a path.
+  ```bash
+  basename /home/user/file.txt  # Output: file.txt
+  ```
+
+- `dirname`: Extracts the directory from a path.
+  ```bash
+  dirname /home/user/file.txt  # Output: /home/user
+  ```
+
+- `wc`: Counts lines, words, or characters.
+  ```bash
+  wc -l file.txt  # Count lines in file.txt
+  ```
+
+### Putting it All Together
+You can combine these commands into complex scripts that automate tasks, process data, manage files, or interact with users.
+
+Let me know if you need help with any specific use case or further explanation on a command!
