@@ -1,0 +1,138 @@
+Here are shell scripts for each of the tasks specified in your list:
+
+### 1. Check if the Number Entered by the User is Greater than 10
+```bash
+#!/bin/bash
+read -p "Enter a number: " num
+if [ "$num" -gt 10 ]; then
+    echo "The number is greater than 10."
+else
+    echo "The number is not greater than 10."
+fi
+```
+
+### 2. Check if a File Exists, If Not, Create It
+```bash
+#!/bin/bash
+read -p "Enter a file name: " filename
+if [ -e "$filename" ]; then
+    echo "The file '$filename' already exists."
+else
+    touch "$filename"
+    echo "The file '$filename' has been created."
+fi
+```
+
+### 3. Check if First Argument is a Directory, If Not, Create Directory with Second Argument
+```bash
+#!/bin/bash
+if [ -d "$1" ]; then
+    echo "'$1' is a directory."
+else
+    mkdir "$2"
+    echo "Directory '$2' created."
+fi
+```
+
+### 4. Check Total Arguments Passed, If Greater Than 5, Display Message
+```bash
+#!/bin/bash
+if [ "$#" -gt 5 ]; then
+    echo "Too many arguments."
+else
+    echo "Number of arguments is less than or equal to 5."
+fi
+```
+
+### 5. Check if Argument Passed is a File or Directory
+```bash
+#!/bin/bash
+if [ -f "$1" ]; then
+    echo "'$1' is a file."
+elif [ -d "$1" ]; then
+    echo "'$1' is a directory."
+else
+    echo "'$1' is neither a file nor a directory."
+fi
+```
+
+### 6. Check if Entered Month is Either August or October
+```bash
+#!/bin/bash
+read -p "Enter a month name: " month
+if [ "$month" = "August" ] || [ "$month" = "October" ]; then
+    echo "The month is either August or October."
+else
+    echo "The month is neither August nor October."
+fi
+```
+
+### 7. Check if File or Directory Exists
+```bash
+#!/bin/bash
+read -p "Enter a file or directory name: " name
+if [ -e "$name" ]; then
+    echo "'$name' exists."
+else
+    echo "'$name' does not exist."
+fi
+```
+
+### 7b. Check if File Exists and is Readable
+```bash
+#!/bin/bash
+read -p "Enter a file name: " filename
+if [ -e "$filename" ]; then
+    if [ -r "$filename" ]; then
+        echo "The file '$filename' exists and is readable."
+    else
+        echo "The file '$filename' exists but is not readable."
+    fi
+else
+    echo "The file '$filename' does not exist."
+fi
+```
+
+### 8. Check if the Present Month is August Using `date` Command
+```bash
+#!/bin/bash
+current_month=$(date +%B)
+if [ "$current_month" = "August" ]; then
+    echo "The present month is August."
+else
+    echo "The present month is not August."
+fi
+```
+
+### 9. Check if Current User is Root or Regular User
+```bash
+#!/bin/bash
+if [ "$EUID" -eq 0 ]; then
+    echo "You are the root user."
+else
+    echo "You are a regular user."
+fi
+```
+
+### 10. Check Total Arguments Passed, If More Than 3, List Arguments
+```bash
+#!/bin/bash
+if [ "$#" -gt 3 ]; then
+    echo "Arguments passed: $@"
+else
+    echo "Type more next time."
+fi
+```
+
+### Instructions for Running the Scripts
+1. **Create the Script**: Save each of the above code blocks into separate files, e.g., `script1.sh`, `script2.sh`, etc.
+2. **Make the Script Executable**: Use the following command:
+   ```bash
+   chmod +x script1.sh
+   ```
+3. **Run the Script**: Execute the script by running:
+   ```bash
+   ./script1.sh
+   ```
+
+These scripts cover all the tasks, and you can modify them as needed. Let me know if you have any questions or need further assistance!
