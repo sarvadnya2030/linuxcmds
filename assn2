@@ -1,0 +1,135 @@
+
+
+1. **Create Student Record Text File as "Student1"**
+```bash
+cat <<EOL > Student1.txt
+PRN Number,Student Name,Year,Division,Roll No,Email Id,Gender
+12110382,INGLE AKASH SWARUP,SY,CS-B,32,akash.ingle21@vit.edu,Male
+12111286,JAYAPPA ATHARVA VIJAY,SY,CS-B,40,atharva.jayappa21@vit.edu,Male
+12111284,JOSHI PRANAV JAYANT,SY,CS-B,43,pranav.joshi21@vit.edu,Male
+12111281,KETKAR OJAS DEVENDRA,SY,CS-B,56,ojas.ketkar211@vit.edu,Male
+12010017,Pavan Kumar Sanjay,TY,CS-C,26,pavan.sanjay20@vit.edu,Male
+12010870,PAWAR OMKAR VIKAS,TY,CS-C,28,omkar.pawar20@vit.edu,Male
+12011408,PRANITA PRASHANT MASKE,TY,CS-C,41,pranita.maske20@vit.edu,Female
+12120031,BHAGWAT AKASH DAULAT,TY,CS-C,55,akash.bhagwat21@vit.edu,Male
+12120039,GAIKWAD UDAYAN FATHESINGH,TY,CS-C,62,udayan.gaikwad21@vit.edu,Male
+12120014	INAMDAR SANIYA AJIJ,TY,CS-C,64,saniya.inamadar21@vit.edu,Female
+12120050,KAPSE SHREYAS SANTOSH,TY,CS-C,69,shreyas.kapse21@vit.edu,Male
+12120033,MUKTA PATIL,TY,CS-C,72,patil.mukta21@vit.edu,Male
+11910490,KOLPE SAKET PRADIP,BTech,CS-B,16,saket.kolpe19@vit.edu,Male
+12020233,PAWAR GAURAV PRABHAKAR,BTech,CS-C,28,gaurav.pawar20@vit.edu,Male
+11910590,RINGNEKAR VARUN DEEPAK,BTech,CS-D,2,varun.ringnekar19@vit.edu,Male
+11910541,SATDEVE HARSH SHAILESH,BTech,CS-D,9,harsh.satdeve19@vit.edu,Male
+11910157,SAMARTH GAJANAN GAWANDE,BTech,CS-D,7,SAMARTH.GAWANDE19@vit.edu,Male
+11911020,SURANGALIKAR KIRTISH NITIN,BTech,CS-D,13,kirtish.surangalikar19@vit.edu,Male
+11911229,PATIL PRADYUMN NARENDRA,BTech,CS-C-3,11,pradyumn.patil19@vit.edu,Male
+EOL
+```
+
+2. **Find BTech Students from "Student1" and Save to "Btech"**
+```bash
+grep "BTech" Student1.txt > Btech.txt
+```
+
+3. **Find TY Students from "Student1" and Save to "TY"**
+```bash
+grep "TY" Student1.txt > TY.txt
+```
+
+4. **Find SY Students from "Student1" and Save to "SY"**
+```bash
+grep "SY" Student1.txt > SY.txt
+```
+
+5. **Combine SY and TY Students and Save to "SYTY"**
+```bash
+cat SY.txt TY.txt > SYTY.txt
+```
+
+6. **Sort the File Based on Roll No and Save to "Student2"**
+```bash
+sort -t, -k5 Student1.txt > Student2.txt
+```
+
+7. **Compare "Student1" with "Btech" and Save Content into "Student2"**
+```bash
+comm -12 <(sort Student1.txt) <(sort Btech.txt) > Student7.txt
+```
+
+8. **Find PRN NO, Student Name, Year, and Division Field Data from "Student1" and Save into "Student3"**
+```bash
+cut -d, -f1-4 Student1.txt > Student3.txt
+```
+
+9. **Find Roll No, Email Id, and Gender Field Data from "Student1" and Save into "Student4"**
+```bash
+cut -d, -f5,6,7 Student1.txt > Student4.txt
+```
+
+10. **Combine "Student3" and "Student4" and Save into "Student5"**
+```bash
+paste -d, Student3.txt Student4.txt > Student5.txt
+```
+
+11. **Convert "Student1" Content into Uppercase Letters and Save into "Student6"**
+```bash
+tr '[:lower:]' '[:upper:]' < Student1.txt > Student6.txt
+```
+
+12. **Compare "Student1" and "BTech" and Save Content into "Student7"**
+```bash
+comm -12 <(sort Student1.txt) <(sort Btech.txt) > Student7.txt
+```
+
+13. **Find Difference Between "Student1" and "BTech" and Save into "Student8"**
+```bash
+comm -13 <(sort Student1.txt) <(sort Btech.txt) > Student8.txt
+```
+
+14. **Find Common Between "Student1" and "BTech" and Save into "Student9"**
+```bash
+comm -12 <(sort Student1.txt) <(sort Btech.txt) > Student9.txt
+```
+
+15. **Remove Read and Write Permission for User and Group on "SY" File**
+```bash
+chmod ug-rw SY.txt
+```
+
+16. **Assign Read, Write, Execute Permission to User and Others on "SY" File**
+```bash
+chmod 755 SY.txt
+```
+
+17. **Display Count of Male Students from "Student1"**
+```bash
+grep -c "Male" Student1.txt
+```
+
+18. **Find Out Name of Student Field Data from "Student1" and Count Students**
+```bash
+cut -d, -f2 Student1.txt | wc -l
+```
+
+19. **Find Out Files and Directories in Current Path and Save to "ufile"**
+```bash
+ls -l > ufile; find . -type d | wc -l && find . -type f | wc -l
+```
+
+### Explanation:
+- **cat**: Creates a file with the specified content.
+- **grep**: Filters lines based on patterns.
+- **sort**: Sorts lines in a file.
+- **cut**: Extracts specified fields from lines.
+- **paste**: Merges lines of files.
+- **tr**: Translates characters (to uppercase).
+- **chmod**: Changes file permissions.
+- **wc**: Counts lines, words, or characters.
+- **find**: Searches for files and directories.
+
+### Usage:
+1. Save each block of code to a file, e.g., `student_management.sh`.
+2. Give execute permission using: `chmod +x student_management.sh`.
+3. Run the script with: `./student_management.sh`.
+
+Let me know if you have any questions or need further assistance!
